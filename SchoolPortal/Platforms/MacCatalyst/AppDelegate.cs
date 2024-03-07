@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace TestApplication
+namespace SchoolPortal
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

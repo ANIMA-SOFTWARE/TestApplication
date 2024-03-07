@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace TestApplication
+namespace SchoolPortal
 {
     public class Program
     {

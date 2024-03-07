@@ -1,4 +1,4 @@
-﻿namespace TestApplication
+﻿namespace SchoolPortal.Views
 {
     public partial class MainPage : ContentPage
     {

@@ -1,8 +1,6 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="TestApplication.WinUI.App"
+    x:Class="SchoolPortal.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:TestApplication.WinUI">
-
-</maui:MauiWinUIApplication>
+    xmlns:local="using:SchoolPortal"
+    xmlns:maui="using:Microsoft.Maui" />
