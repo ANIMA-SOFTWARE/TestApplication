@@ -1,4 +1,4 @@
-﻿namespace SchoolPortal.Views
+﻿namespace SchoolPortal.Pages
 {
     public partial class MainPage : ContentPage
     {
