@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using SchoolPortal.ViewModels;
+using SchoolPortal.Pages;
 
 namespace SchoolPortal
 {
@@ -17,6 +19,10 @@ namespace SchoolPortal
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddTransient<UsersPage>();
+            builder.Services.AddTransient<UsersViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
