@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Primitives;
 using SchoolPortal.Models;
 
 namespace SchoolPortal.ViewModels
@@ -16,13 +18,26 @@ namespace SchoolPortal.ViewModels
         ObservableCollection<User> users;
 
         [ObservableProperty]
-        string name = "";
+        string name;
 
         [RelayCommand]
         void Add()
         {
+            if (string.IsNullOrWhiteSpace(Name))
+                return;
+           
             Users.Add(new User(Name));
-            Name = "";
+            Name = string.Empty;
+        }
+
+        [RelayCommand]
+        void Delete(string Name)
+        {
+            if (Users.Where(user => user.Name == Name).Any())
+            {
+                Users.Remove(Users.Where(u => u.Name == Name).First());
+            }
+         
         }
 
     }
