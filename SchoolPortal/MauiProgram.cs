@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 
-namespace TestApplication
+namespace SchoolPortal
 {
     public static class MauiProgram
     {

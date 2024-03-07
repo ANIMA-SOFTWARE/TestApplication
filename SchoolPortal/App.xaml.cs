@@ -1,4 +1,4 @@
-﻿namespace TestApplication
+﻿namespace SchoolPortal
 {
     public partial class App : Application
     {
