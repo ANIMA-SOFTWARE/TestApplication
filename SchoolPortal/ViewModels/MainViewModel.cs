@@ -12,7 +12,7 @@ namespace SchoolPortal.ViewModels
         [RelayCommand]
         async Task GoToUsersPage()
         {
-            await Shell.Current.GoToAsync(nameof(UsersPage));
+            await Shell.Current.GoToAsync(nameof(UsersListPage));
         }
 
     }

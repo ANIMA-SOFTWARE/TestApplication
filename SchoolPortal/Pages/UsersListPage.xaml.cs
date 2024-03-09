@@ -2,9 +2,9 @@ using SchoolPortal.ViewModels;
 
 namespace SchoolPortal.Pages;
 
-public partial class UsersPage : ContentPage
+public partial class UsersListPage : ContentPage
 {
-	public UsersPage(UsersViewModel vm)
+	public UsersListPage(UsersListViewModel vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

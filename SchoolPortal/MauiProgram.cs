@@ -2,6 +2,8 @@
 using CommunityToolkit.Maui;
 using SchoolPortal.ViewModels;
 using SchoolPortal.Pages;
+using SchoolPortal.Stores;
+using Microsoft.Extensions.Configuration;
 
 namespace SchoolPortal
 {
@@ -14,15 +16,30 @@ namespace SchoolPortal
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
 
+                //Fonts
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            //Services
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainViewModel>();
-            builder.Services.AddTransient<UsersPage>();
-            builder.Services.AddTransient<UsersViewModel>();
+            builder.Services.AddTransient<UsersListPage>();
+            builder.Services.AddTransient<UsersListViewModel>();
+            builder.Services.AddSingleton<UsersStore>();
+
+            //Config builder
+            var configBuilder = new ConfigurationBuilder()
+                .AddJsonFile($"appsettings.json", true, true);
+
+            IConfiguration configuration = configBuilder.Build();
+
+            var sqlServerConnectionString = configuration.GetConnectionString("DefaultConnection")
+            builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(sqlServerConnectionString))
+
+
 
 #if DEBUG
     		builder.Logging.AddDebug();
