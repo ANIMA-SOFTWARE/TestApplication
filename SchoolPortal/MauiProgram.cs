@@ -14,9 +14,8 @@ namespace SchoolPortal
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
 
-                //Fonts
+            //Fonts
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -24,10 +23,13 @@ namespace SchoolPortal
                 });
 
             //Services
-            builder.Services.AddSingleton<MainPage>();
+  
             builder.Services.AddSingleton<MainViewModel>();
-            builder.Services.AddTransient<UsersListPage>();
             builder.Services.AddTransient<UsersListViewModel>();
+
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<UsersListPage>();
+
             builder.Services.AddSingleton<UsersStore>();
 
             //Config builder
@@ -36,6 +38,7 @@ namespace SchoolPortal
 
             IConfiguration configuration = configBuilder.Build();
 
+            //Database context
             var sqlServerConnectionString = configuration.GetConnectionString("DefaultConnection")
             builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(sqlServerConnectionString))
 

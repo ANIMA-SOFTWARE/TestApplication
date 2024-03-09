@@ -30,7 +30,7 @@ namespace SchoolPortal.ViewModels
 
         void CanAdd()
         {
-            return string.IsNullOrEmpty(Name) || string.IsNullOrEmpty()
+            return string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Email);
         }
 
    
