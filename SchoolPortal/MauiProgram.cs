@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
+using SchoolPortal.ViewModels;
+using SchoolPortal.Pages;
 
-namespace TestApplication
+namespace SchoolPortal
 {
     public static class MauiProgram
     {
@@ -9,11 +12,17 @@ namespace TestApplication
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddTransient<UsersPage>();
+            builder.Services.AddTransient<UsersViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
