@@ -4,6 +4,7 @@ using SchoolPortal.ViewModels;
 using SchoolPortal.Pages;
 using SchoolPortal.Stores;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace SchoolPortal
 {
@@ -33,14 +34,12 @@ namespace SchoolPortal
             builder.Services.AddSingleton<UsersStore>();
 
             //Config builder
-            var configBuilder = new ConfigurationBuilder()
-                .AddJsonFile($"appsettings.json", true, true);
 
-            IConfiguration configuration = configBuilder.Build();
 
             //Database context
-            var sqlServerConnectionString = configuration.GetConnectionString("DefaultConnection")
-            builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(sqlServerConnectionString))
+            var sqlServerConnectionString = configuration.GetConnectionString("DefaultConnection") ?? ""; 
+            builder.Services.AddSingleton<SqlConnection>(connection => sqlServerConnectionString);
+
 
 
 
