@@ -57,27 +57,43 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+	  <None Remove="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Dapper" Version="2.1.35" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Helpers\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Pages\UsersPage.xaml.cs">
-	    <DependentUpon>UsersPage.xaml</DependentUpon>
+	  <Compile Update="Pages\CreateUserPage.xaml.cs">
+	    <DependentUpon>CreateUserPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\UsersListPage.xaml.cs">
+	    <DependentUpon>UsersListPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\UsersPage.xaml">
+	  <MauiXaml Update="Pages\CreateUserPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\UsersListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Exceptions\" />
 	</ItemGroup>
 
 </Project>

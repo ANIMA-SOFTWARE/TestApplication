@@ -8,7 +8,8 @@ namespace SchoolPortal
         {
             InitializeComponent();
 
-            Routing.RegisterRoute(nameof(UsersPage), typeof(UsersPage));
+            Routing.RegisterRoute(nameof(UsersListPage), typeof(UsersListPage));
+            Routing.RegisterRoute(nameof(CreateUserPage), typeof(CreateUserPage));
         }
     }
 }
