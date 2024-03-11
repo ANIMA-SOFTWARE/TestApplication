@@ -1,7 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SchoolPortal.Helpers;
 using SchoolPortal.Models;
+using SchoolPortal.Pages;
+using SchoolPortal.Stores;
 
 namespace SchoolPortal.ViewModels
 {
@@ -9,41 +13,37 @@ namespace SchoolPortal.ViewModels
     {
 
         [ObservableProperty]
-        ObservableCollection<UserViewModel> users;
+        IEnumerable<User> users;
+
+        private readonly UsersStore store;
 
         public UsersListViewModel()
         {
-            Users = new ObservableCollection<UserViewModel>();
-        }
 
-        [RelayCommand(CanExecute = nameof(CanAdd())]
-        void Add(string Name, string Email, string Username, string Password, string Role)
-        {
-            if (string.IsNullOrWhiteSpace(Name))
-                return;
-
-            User user = new(Name);
-
-            Users.Add(new UserViewModel(user));
+            store = ServiceHelper.GetService<UsersStore>();
+            Users = (List<User>)store.GetAll();
 
         }
 
-        void CanAdd()
-        {
-            return string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Email);
+       [RelayCommand]
+        async Task GoToCreateUserPage()
+       {
+          await Shell.Current.GoToAsync(nameof(CreateUserPage));
         }
 
-   
+      
 
         [RelayCommand]
-        void Delete(string Id)
+
+        void Delete()
         {
-            if (Users.Where(user => user.Id == Id).Any())
-            {
-                Users.Remove(Users.Where(u => u.Id == Id).First());
-            }
 
         }
+
+        private void GetAll(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            Users = (List<User>)store.GetAll();
+        }     
 
     }
 }

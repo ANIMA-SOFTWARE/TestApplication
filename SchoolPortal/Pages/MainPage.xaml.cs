@@ -1,8 +1,8 @@
 ﻿using SchoolPortal.Helpers;
 using SchoolPortal.ViewModels;
 
-namespace SchoolPortal.Pages
-{
+namespace SchoolPortal.Pages;
+
     public partial class MainPage : ContentPage
     {
         int count = 0;
@@ -26,4 +26,4 @@ namespace SchoolPortal.Pages
         }
     }
 
-}
+

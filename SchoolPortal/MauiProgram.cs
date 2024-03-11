@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using CommunityToolkit.Maui;
 using SchoolPortal.ViewModels;
 using SchoolPortal.Pages;
 using SchoolPortal.Stores;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
+using SchoolPortal.Storage;
+using System.Reflection;
 
 namespace SchoolPortal
 {
@@ -24,21 +25,35 @@ namespace SchoolPortal
                 });
 
             //Services
-  
-            builder.Services.AddSingleton<MainViewModel>();
-            builder.Services.AddTransient<UsersListViewModel>();
+
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();
+       
             builder.Services.AddTransient<UsersListPage>();
+            builder.Services.AddTransient<UsersListViewModel>();
+
+            builder.Services.AddTransient<CreateUserPage>();
+            builder.Services.AddTransient<UserViewModel>();
 
             builder.Services.AddSingleton<UsersStore>();
 
             //Config builder
 
+            var a = Assembly.GetExecutingAssembly();
+            using var stream = a.GetManifestResourceStream("SchoolPortal.appsettings.json");
 
-            //Database context
-            var sqlServerConnectionString = configuration.GetConnectionString("DefaultConnection") ?? ""; 
-            builder.Services.AddSingleton<SqlConnection>(connection => sqlServerConnectionString);
+            var config = new ConfigurationBuilder()
+                        .AddJsonStream(stream)
+                        .Build();
+
+
+            builder.Configuration.AddConfiguration(config);
+
+            var connectionString = config.GetSection("DefaultConnection").Value;
+            builder.Services.AddSingleton<SchoolPortalDatabase>();
+
+
 
 
 

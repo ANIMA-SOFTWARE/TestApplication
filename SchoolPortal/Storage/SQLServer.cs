@@ -1,27 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using SchoolPortal.Models;
 
 namespace SchoolPortal.Storage;
 
-    public class SQLServer : BaseDatabase, IDatabase
+    public class SQLServer : IDatabase
 {
-        private readonly SqlConnection connection;
+    private readonly string connectionString;
+    public SQLServer(string connectionString) {
+        this.connectionString = connectionString;
+    }
 
-
-        public SQLServer() { 
-    
-        connection = new SqlConnection(connectionString);
-         }
+    public DbConnection NewConnection()
+    {
+        return new SqlConnection(connectionString);
+    }
 
     public int Execute(string sql, object? param = null)
     {
-        throw new NotImplementedException();
+       using var conn = NewConnection();
+        return conn.Execute(sql, param);
     }
 
     public int ExecuteAsync(string sql, object? param = null)
@@ -29,22 +34,25 @@ namespace SchoolPortal.Storage;
         throw new NotImplementedException();
     }
 
-    public IEnumerable<BaseModel> Query<BaseModel>(string sql, object? param = null)
+   
+    public IEnumerable<T> Query<T>(string sql, object? param = null)
     {
-       return connection.Query<BaseModel>(sql, param);
+        using var conn = NewConnection();
+        return conn.Query<T>(sql,param);
+
     }
 
-    public IEnumerable<BaseModel> QueryAsync<BaseModel>(string sql, object? param = null)
-    {
-        throw new NotImplementedException();
-    }
-
-    public BaseModel QueryFirst<BaseModel>(string sql)
+    public IEnumerable<T> QueryAsync<T>(string sql, object? param = null)
     {
         throw new NotImplementedException();
     }
 
-    public BaseModel QueryFirstOrDefault<BaseModel>(string sql)
+    public T QueryFirst<T>(string sql)
+    {
+        throw new NotImplementedException();
+    }
+
+    public T QueryFirstOrDefault<T>(string sql)
     {
         throw new NotImplementedException();
     }
@@ -59,12 +67,12 @@ namespace SchoolPortal.Storage;
         throw new NotImplementedException();
     }
 
-    public BaseModel QuerySingle<BaseModel>(string sql)
+    public T QuerySingle<T>(string sql)
     {
         throw new NotImplementedException();
     }
 
-    public BaseModel QuerySingleOrDefault<BaseModel>(string sql)
+    public T QuerySingleOrDefault<T>(string sql)
     {
         throw new NotImplementedException();
     }
