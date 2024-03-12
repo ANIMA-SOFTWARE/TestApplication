@@ -23,6 +23,12 @@ namespace SchoolPortal.Stores
             throw new NotImplementedException();
         }
 
+        public void Delete(int id) {
+            string sql = "DELETE FROM Users Where Id = @Id";
+            object[] parameters = { new { id } };
+            database.Execute(sql, parameters);
+        }
+
         public void Update(User model)
         {
             throw new NotImplementedException();

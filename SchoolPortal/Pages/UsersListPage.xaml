@@ -25,25 +25,39 @@
 
         <CollectionView Grid.Row="2" ItemsSource="{Binding Users}">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:User">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    BackgroundColor="Red"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UserViewModel}}, Path=DeleteCommand}"
-                                    CommandParameter="{Binding Name}"
-                                    Text="Delete" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
+            <CollectionView.Header>
 
-                        <Grid Padding="0,5">
-                            <Frame>
-                                <Label Text="{Binding Name}" />
-                            </Frame>
-                        </Grid>
-                    </SwipeView>
+                <Grid
+                    Padding="50"
+                    ColumnDefinitions="*,*,*,*"
+                    ColumnSpacing="10"
+                    RowSpacing="10">
+                    <Label Grid.Column="0" Text="ID" />
+                    <Label Grid.Column="1" Text="Name" />
+                    <Label Grid.Column="2" Text="Email" />
+                    <Label Grid.Column="3" Text="Delete" />
+                </Grid>
+
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="models:User">
+
+                    <Grid
+                        Padding="50"
+                        ColumnDefinitions="*,*,*,*"
+                        ColumnSpacing="10"
+                        RowSpacing="10">
+                        <Label Grid.Column="0" Text="{Binding Id}" />
+                        <Label Grid.Column="1" Text="{Binding Name}" />
+                        <Label Grid.Column="2" Text="{Binding Email}" />
+                        <Button
+                            Grid.Column="3"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UsersListViewModel}}, Path=DeleteCommand}"
+                            CommandParameter="{Binding Id}"
+                            Text="Delete" />
+                    </Grid>
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>

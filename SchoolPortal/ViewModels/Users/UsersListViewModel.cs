@@ -34,10 +34,12 @@ namespace SchoolPortal.ViewModels
       
 
         [RelayCommand]
-
-        void Delete()
+         void Delete(int Id)
         {
-
+            //Delete from db
+            store.Delete(Id);
+            //Delete from collection
+            Users = Users.Where(x => x.Id != Id).ToList();
         }
 
         private void GetAll(object? sender, NotifyCollectionChangedEventArgs e)

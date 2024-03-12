@@ -27,6 +27,7 @@
             Text="{Binding Email}" />
         <Entry
             Grid.Row="3"
+            IsPassword="True"
             Placeholder="Password"
             Text="{Binding Password}" />
         <Entry
