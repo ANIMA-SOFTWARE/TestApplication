@@ -26,20 +26,23 @@ namespace SchoolPortal
 
             //Services
 
-
+            //Main Page
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainViewModel>();
        
+            //Users List Page
             builder.Services.AddTransient<UsersListPage>();
             builder.Services.AddTransient<UsersListViewModel>();
 
+            //Create User Page
             builder.Services.AddTransient<CreateUserPage>();
             builder.Services.AddTransient<UserViewModel>();
 
+            //User Store
             builder.Services.AddSingleton<UsersStore>();
 
-            //Config builder
 
+            //Config builder
             var a = Assembly.GetExecutingAssembly();
             using var stream = a.GetManifestResourceStream("SchoolPortal.appsettings.json");
 
@@ -50,6 +53,7 @@ namespace SchoolPortal
 
             builder.Configuration.AddConfiguration(config);
 
+            //Get DB connection string
             var connectionString = config.GetSection("DefaultConnection").Value;
             builder.Services.AddSingleton<SchoolPortalDatabase>();
 
