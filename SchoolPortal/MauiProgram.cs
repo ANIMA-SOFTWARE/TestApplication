@@ -53,8 +53,7 @@ namespace SchoolPortal
 
             builder.Configuration.AddConfiguration(config);
 
-            //Get DB connection string
-            var connectionString = config.GetSection("DefaultConnection").Value;
+          
             builder.Services.AddSingleton<SchoolPortalDatabase>();
 
 
