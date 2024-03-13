@@ -14,28 +14,36 @@
         Padding="10"
         ColumnDefinitions=".100*"
         ColumnSpacing="10"
-        RowDefinitions="100,Auto,*"
+        RowDefinitions="*,50"
         RowSpacing="10">
 
-        <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            Command="{Binding GoToCreateUserPageCommand}"
-            Text="Add User" />
 
-        <CollectionView Grid.Row="2" ItemsSource="{Binding Users}">
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Users}">
 
             <CollectionView.Header>
 
                 <Grid
-                    Padding="50"
+                    Padding="10"
                     ColumnDefinitions="*,*,*,*"
                     ColumnSpacing="10"
                     RowSpacing="10">
-                    <Label Grid.Column="0" Text="ID" />
-                    <Label Grid.Column="1" Text="Name" />
-                    <Label Grid.Column="2" Text="Email" />
-                    <Label Grid.Column="3" Text="Delete" />
+
+                    <Label
+                        Grid.Column="0"
+                        FontSize="Small"
+                        Text="ID" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="Small"
+                        Text="Name" />
+                    <Label
+                        Grid.Column="2"
+                        FontSize="Small"
+                        Text="Email" />
+                    <Label
+                        Grid.Column="3"
+                        FontSize="Small"
+                        Text="Delete" />
                 </Grid>
 
             </CollectionView.Header>
@@ -45,24 +53,40 @@
                 <DataTemplate x:DataType="models:User">
 
                     <Grid
-                        Padding="50"
+                        Padding="10"
                         ColumnDefinitions="*,*,*,*"
                         ColumnSpacing="10"
                         RowSpacing="10">
-                        <Label Grid.Column="0" Text="{Binding Id}" />
-                        <Label Grid.Column="1" Text="{Binding Name}" />
-                        <Label Grid.Column="2" Text="{Binding Email}" />
+                        <Label
+                            Grid.Column="0"
+                            Text="{Binding Id}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding Name}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="2"
+                            Text="{Binding Email}"
+                            VerticalOptions="Center" />
                         <Button
                             Grid.Column="3"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UsersListViewModel}}, Path=DeleteCommand}"
                             CommandParameter="{Binding Id}"
-                            Text="Delete" />
+                            Text="Delete"
+                            VerticalOptions="Center" />
                     </Grid>
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Command="{Binding GoToCreateUserPageCommand}"
+            Text="Add User" />
 
     </Grid>
 </ContentPage>

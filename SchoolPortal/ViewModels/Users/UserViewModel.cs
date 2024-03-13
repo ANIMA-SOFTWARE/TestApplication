@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using SchoolPortal.Helpers;
 using SchoolPortal.Models;
+using SchoolPortal.Pages;
 using SchoolPortal.Stores;
 
 namespace SchoolPortal.ViewModels
@@ -34,7 +35,7 @@ namespace SchoolPortal.ViewModels
         }
 
         [RelayCommand(CanExecute = nameof(CanCreate))]
-        void Create()
+        async Task Create()
         {
            
             Store.Create(new User(Name, Email, Password, Username, RoleId));
@@ -44,6 +45,8 @@ namespace SchoolPortal.ViewModels
             Password = "";
             Username = "";
             RoleId = -1;
+
+            await Shell.Current.GoToAsync(nameof(UsersListPage));
         }
 
         bool CanCreate()

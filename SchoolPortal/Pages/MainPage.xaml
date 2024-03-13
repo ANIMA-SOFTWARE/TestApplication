@@ -9,7 +9,7 @@
         Padding="10"
         ColumnDefinitions=".100*"
         ColumnSpacing="10"
-        RowDefinitions="2*,*,*,*,*,*"
+        RowDefinitions="2*,*,50,50,50,*"
         RowSpacing="10">
 
         <Image
