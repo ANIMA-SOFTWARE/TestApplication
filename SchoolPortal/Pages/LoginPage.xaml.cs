@@ -1,9 +1,9 @@
 using SchoolPortal.ViewModels;
 
 namespace SchoolPortal.Pages;
-public partial class CreateUserPage : ContentPage
+public partial class LoginPage : ContentPage
 {
-	public CreateUserPage(UserViewModel vm)
+	public LoginPage(LoginViewModel vm)
 	{
         InitializeComponent();
 		BindingContext = vm;

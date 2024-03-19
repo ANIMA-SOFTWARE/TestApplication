@@ -27,7 +27,7 @@ namespace SchoolPortal.ViewModels
 
        [RelayCommand]
         async Task GoToCreateUserPage()
-       {
+        {
           await Shell.Current.GoToAsync(nameof(CreateUserPage));
         }
 
@@ -45,7 +45,9 @@ namespace SchoolPortal.ViewModels
         private void GetAll(object? sender, NotifyCollectionChangedEventArgs e)
         {
             Users = (List<User>)store.GetAll();
-        }     
+        }
 
+
+       
     }
 }

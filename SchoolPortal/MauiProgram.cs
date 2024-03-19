@@ -38,6 +38,10 @@ namespace SchoolPortal
             builder.Services.AddTransient<CreateUserPage>();
             builder.Services.AddTransient<UserViewModel>();
 
+            //Login Page
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<LoginViewModel>(); 
+
             //User Store
             builder.Services.AddSingleton<UsersStore>();
 
@@ -53,8 +57,7 @@ namespace SchoolPortal
 
             builder.Configuration.AddConfiguration(config);
 
-            //Get DB connection string
-            var connectionString = config.GetSection("DefaultConnection").Value;
+          
             builder.Services.AddSingleton<SchoolPortalDatabase>();
 
 
