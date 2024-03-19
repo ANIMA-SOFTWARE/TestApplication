@@ -11,6 +11,7 @@ namespace SchoolPortal
             //Routes
             Routing.RegisterRoute(nameof(UsersListPage), typeof(UsersListPage));
             Routing.RegisterRoute(nameof(CreateUserPage), typeof(CreateUserPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
         }
     }
 }

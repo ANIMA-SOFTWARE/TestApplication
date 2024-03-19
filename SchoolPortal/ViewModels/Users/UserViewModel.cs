@@ -9,7 +9,7 @@ namespace SchoolPortal.ViewModels
 {
     public partial class UserViewModel : ObservableObject
     {
-        private readonly UsersStore Store;
+         private readonly UsersStore Store;
 
         [NotifyCanExecuteChangedFor(nameof(CreateCommand))]
         [ObservableProperty]

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SchoolPortal.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:SchoolPortal.Models"
+    xmlns:viewmodels="clr-namespace:SchoolPortal.ViewModels"
+    Title="Login"
+    x:DataType="viewmodels:LoginViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:LoginViewModel />
+    </ContentPage.BindingContext>
+    <Grid
+        Padding="50"
+        ColumnDefinitions=".100*"
+        ColumnSpacing="10"
+        RowDefinitions="*,*,*"
+        RowSpacing="10">
+
+        <Entry
+            Grid.Row="0"
+            Placeholder="Username"
+            Text="{Binding Username}" />
+
+        <Entry
+            Grid.Row="1"
+            IsPassword="True"
+            Placeholder="Password"
+            Text="{Binding Password}" />
+
+        <Button
+            Grid.Row="2"
+            Command="{Binding LoginCommand}"
+            Text="Login" />
+
+    </Grid>
+</ContentPage>

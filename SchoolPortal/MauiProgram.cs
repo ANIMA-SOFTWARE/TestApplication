@@ -38,6 +38,10 @@ namespace SchoolPortal
             builder.Services.AddTransient<CreateUserPage>();
             builder.Services.AddTransient<UserViewModel>();
 
+            //Login Page
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<LoginViewModel>(); 
+
             //User Store
             builder.Services.AddSingleton<UsersStore>();
 

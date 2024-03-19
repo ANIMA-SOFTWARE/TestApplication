@@ -27,7 +27,7 @@ namespace SchoolPortal.ViewModels
 
        [RelayCommand]
         async Task GoToCreateUserPage()
-       {
+        {
           await Shell.Current.GoToAsync(nameof(CreateUserPage));
         }
 
